@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fonte-destaque: "Archivo Black", arial;
+  --fonte-secundaria: "Oswald", arial;
+  --fonte-corpo: "Inter", arial;
+
+  --azul-turquesa: #1A7A8A;
+  --azul-escuro: #0D4F5C;
+  --azul-medio: #145e6e;
+  --dourado: #C9A84C;
+  --dourado-claro: #E8C97A;
+  --verde-bandeira: #1E7A4A;
+  --verde-escuro: #154F32;
+  --areia: #F5EDD6;
+  --areia-escura: #E8D9B0;
+  --tijolo: #9C3D2C;
+  --branco: #FAFAF7;
+  --cinza-suave: #F0EAD6;
+  --texto-escuro: #1a1a1a;
+  --texto-medio: #3d3d3d;
+}
+
+a { text-decoration: none; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fonte-corpo);
+  color: var(--texto-escuro);
+  background-color: var(--branco);
+}
+
+/* ===== CABEÇALHO ===== */
+.cabecalho {
+  background-color: var(--azul-escuro);
+  padding: 14px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 3px solid var(--dourado);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.cabecalho img {
+  width: 100px;
+  height: 62px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 2px solid var(--dourado);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+}
+
+.menu a {
+  color: var(--areia);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--fonte-secundaria);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--dourado);
+  transition: width 0.3s ease;
+}
+
+.menu a:hover { color: var(--dourado-claro); }
+.menu a:hover::after { width: 100%; }
+
+/* ===== SEÇÃO: DESTAQUE ===== */
+#destaque {
+  min-height: 100vh;
+  padding: 120px 8% 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  background: linear-gradient(135deg, var(--azul-escuro) 0%, #1a6b7c 50%, var(--verde-escuro) 100%);
+  border-bottom: 3px solid var(--dourado);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Detalhe decorativo inspirado nos mosaicos uzbeques */
+#destaque::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#destaque::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,122,74,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#destaque .card-destaque {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--branco);
+  z-index: 1;
+}
+
+#destaque .card-destaque:first-child {
+  align-items: center;
+}
+
+#destaque .card-destaque img {
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--dourado);
+  box-shadow: 0 0 60px rgba(201,168,76,0.3);
+}
+
+#destaque .card-destaque h1 {
+  font-family: var(--fonte-destaque);
+  font-size: clamp(48px, 6vw, 88px);
+  color: var(--branco);
+  line-height: 1;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+}
+
+#destaque .card-destaque p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--areia);
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+
+/* Tag decorativa (estrela crescente da bandeira) */
+.badge-destaque {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(201,168,76,0.18);
+  border: 1px solid var(--dourado);
+  border-radius: 40px;
+  padding: 6px 18px;
+  font-size: 0.85rem;
+  font-family: var(--fonte-secundaria);
+  letter-spacing: 2px;
+  color: var(--dourado-claro);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+/* ===== BANDEIRA DECORATIVA (painel SVG inline) ===== */
+.bandeira-decorativa {
+  width: 100%;
+  background: var(--azul-escuro);
+  border-top: 2px solid var(--dourado);
+  border-bottom: 2px solid var(--dourado);
+  overflow: hidden;
+  position: relative;
+}
+
+.bandeira-faixas {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faixa-azul  { background-color: #1EBFE8; height: 40px; }
+.faixa-branca { background-color: #FAFAF7; height: 12px; position: relative; }
+.faixa-verde  { background-color: #1D9F58; height: 40px; }
+
+/* Painel explicativo da bandeira */
+.bandeira-section {
+  background: linear-gradient(135deg, #0a3540 0%, var(--azul-escuro) 100%);
+  padding: 60px 8%;
+  border-bottom: 3px solid var(--dourado);
+}
+
+.bandeira-section h2 {
+  font-family: var(--fonte-destaque);
+  font-size: 2rem;
+  color: var(--dourado);
+  margin-bottom: 36px;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.bandeira-grid {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* SVG da bandeira simulada */
+.bandeira-svg-wrap {
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(201,168,76,0.3);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+}
+
+/* Legendas da bandeira */
+.bandeira-legenda {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.legenda-cor {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+.legenda-cor.azul { background: #1EBFE8; }
+.legenda-cor.branca { background: #FAFAF7; }
+.legenda-cor.verde { background: #1D9F58; }
+
+.legenda-texto h4 {
+  font-family: var(--fonte-secundaria);
+  color: var(--dourado-claro);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.legenda-texto p {
+  font-family: var(--fonte-corpo);
+  color: var(--areia);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ===== SEÇÃO HISTÓRIA ===== */
+#sobre {
+  min-height: 100vh;
+  padding: 100px 8% 80px;
+  background-color: var(--areia);
+  position: relative;
+}
+
+#sobre::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--azul-turquesa), var(--dourado), var(--verde-bandeira));
+}
+
+#sobre .coluna-sobre {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+#sobre .coluna-sobre h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--azul-escuro);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-family: var(--fonte-destaque);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+#sobre .card_maior {
+  width: calc(33.33% - 20px);
+  min-width: 280px;
+  background-color: var(--branco);
+  border-radius: 12px;
+  padding: 32px 28px;
+  border-top: 5px solid var(--azul-turquesa);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#sobre .card_maior:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+}
+
+#sobre .card_maior h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: 1.35rem;
+  color: var(--azul-escuro);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--areia-escura);
+  padding-bottom: 12px;
+}
+
+#sobre .card_maior p {
+  font-size: 0.97rem;
+  line-height: 1.8;
+  color: var(--texto-medio);
+}
+
+/* ===== SEÇÃO SELEÇÃO ===== */
+#selecao {
+  padding: 100px 8% 80px;
+  background: linear-gradient(160deg, #0a2e38 0%, var(--azul-escuro) 60%, #0f4020 100%);
+  border-top: 3px solid var(--dourado);
+  border-bottom: 3px solid var(--dourado);
+}
+
+#selecao h1 {
+  font-family: var(--fonte-destaque);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--branco);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+
+.selecao-subtitulo {
+  text-align: center;
+  color: var(--dourado-claro);
+  font-family: var(--fonte-secundaria);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin-bottom: 52px;
+}
+
+.selecao-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.jogador-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 14px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: transform 0.25s, background 0.25s;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.jogador-card:hover {
+  transform: translateY(-8px);
+  background: rgba(201,168,76,0.1);
+  border-color: var(--dourado);
+}
+
+.jogador-num {
+  font-family: var(--fonte-destaque);
+  font-size: 2.2rem;
+  color: var(--dourado);
+  line-height: 1;
+}
+
+.jogador-pos {
+  font-family: var(--fonte-secundaria);
+  font-size: 0.78rem;
+  color: var(--azul-turquesa);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(26,122,138,0.2);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+.jogador-nome {
+  font-family: var(--fonte-secundaria);
+  font-size: 1.05rem;
+  color: var(--branco);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.jogador-clube {
+  font-family: var(--fonte-corpo);
+  font-size: 0.82rem;
+  color: var(--areia-escura);
+  opacity: 0.8;
+}
+
+.selecao-escudo {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.escudo-placeholder {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 130px;
+  background: linear-gradient(160deg, var(--azul-turquesa), var(--azul-escuro));
+  clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.escudo-placeholder span {
+  font-family: var(--fonte-destaque);
+  font-size: 1.6rem;
+  color: var(--dourado);
+}
+
+/* ===== SEÇÃO FUTEBOL ===== */
+#cardapio {
+  padding: 100px 8% 80px;
+  background: linear-gradient(180deg, var(--azul-escuro) 0%, #0a3b48 100%);
+}
+
+#cardapio h1 {
+  font-family: var(--fonte-destaque);
+  color: var(--branco);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.secao-subtitulo {
+  text-align: center;
+  color: var(--areia);
+  font-family: var(--fonte-secundaria);
+  letter-spacing: 2px;
+  font-size: 1rem;
+  margin-bottom: 52px;
+  opacity: 0.75;
+}
+
+#cardapio .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#cardapio .card {
+  background: var(--branco);
+  border-radius: 14px;
+  padding: 28px 24px;
+  border-top: 5px solid var(--azul-turquesa);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;         /* remove fixed height */
+  width: auto;          /* remove fixed width */
+}
+
+#cardapio .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+
+#cardapio .card h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: 0.8rem;
+  color: var(--azul-turquesa);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#cardapio .card h3 {
+  font-family: var(--fonte-destaque);
+  font-size: 1.2rem;
+  color: var(--azul-escuro);
+}
+
+#cardapio .card p {
+  font-family: var(--fonte-corpo);
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: var(--texto-medio);
+  flex: 1;
+}
+
+/* ===== SEÇÃO CURIOSIDADES ===== */
+#promocoes {
+  min-height: 100vh;
+  padding: 100px 8% 80px;
+  background-color: var(--verde-escuro);
+  background-image:
+    radial-gradient(circle at 15% 85%, rgba(201,168,76,0.1) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(26,122,138,0.12) 0%, transparent 45%);
+  position: relative;
+}
+
+#promocoes::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--verde-bandeira), var(--dourado), var(--azul-turquesa));
+}
+
+#promocoes h1 {
+  font-family: var(--fonte-destaque);
+  color: var(--dourado);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+#promocoes .card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 52px;
+}
+
+#promocoes .card_maior {
+  width: calc(33.33% - 20px);
+  min-width: 280px;
+  padding: 32px 28px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-top: 5px solid var(--dourado);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#promocoes .card_maior:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.09);
+}
+
+#promocoes .card_maior h2 {
+  font-family: var(--fonte-secundaria);
+  font-size: 1.2rem;
+  color: var(--dourado-claro);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(201,168,76,0.25);
+  padding-bottom: 12px;
+}
+
+#promocoes .card_maior p {
+  font-family: var(--fonte-corpo);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--areia);
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+  background-color: var(--azul-escuro);
+  border-top: 3px solid var(--dourado);
+  color: var(--areia);
+  text-align: center;
+  padding: 28px 5%;
+  font-family: var(--fonte-secundaria);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  #destaque {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 130px;
+  }
+
+  #destaque .card-destaque {
+    width: 100%;
+    align-items: center;
+  }
+
+  #destaque .card-destaque img {
+    width: 260px;
+    height: 260px;
+  }
+
+  #sobre .card_maior,
+  #promocoes .card_maior {
+    width: 100%;
+  }
+
+  .bandeira-grid {
+    flex-direction: column;
+  }
+
+  .menu { gap: 16px; }
+  .menu a { font-size: 0.85rem; }
+}
